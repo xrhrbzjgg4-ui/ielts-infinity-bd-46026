@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Hostinger Brand Colors - Light Mode */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    /* Primary: Vibrant Purple */
+    --primary: 257 76% 57%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 257 76% 67%;
+
+    /* Secondary: Hot Pink */
+    --secondary: 345 100% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 345 100% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 257 76% 57%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(257 76% 57%), hsl(345 100% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(257 76% 57% / 0.1), hsl(345 100% 60% / 0.1));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(257 76% 98%));
+
+    /* Shadows */
+    --shadow-primary: 0 10px 40px -10px hsl(257 76% 57% / 0.4);
+    --shadow-card: 0 4px 20px -2px hsl(0 0% 0% / 0.06);
+    --shadow-glow: 0 0 40px hsl(257 76% 67% / 0.5);
+    --shadow-neon: 0 0 30px hsl(257 76% 57% / 0.6), 0 0 60px hsl(257 76% 57% / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    /* Hostinger Dark Theme - Black backgrounds with vibrant accents */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 240 10% 8%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 240 10% 8%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 257 76% 67%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 257 76% 77%;
+
+    --secondary: 345 100% 65%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 10% 15%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 345 100% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 10% 15%;
+    --input: 240 10% 15%;
+    --ring: 257 76% 67%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(257 76% 67%), hsl(345 100% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(257 76% 67% / 0.2), hsl(345 100% 65% / 0.2));
+    --gradient-card: linear-gradient(180deg, hsl(240 10% 8%), hsl(240 10% 12%));
+
+    --shadow-primary: 0 10px 40px -10px hsl(257 76% 67% / 0.5);
+    --shadow-card: 0 4px 20px -2px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 40px hsl(257 76% 77% / 0.6);
+    --shadow-neon: 0 0 30px hsl(257 76% 67% / 0.8), 0 0 60px hsl(257 76% 67% / 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
