@@ -8,6 +8,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { ArrowLeft } from "lucide-react";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -94,6 +96,31 @@ const Auth = () => {
     }
     
     setIsLoading(false);
+  };
+
+  const handleSocialLogin = async (provider: 'google' | 'facebook') => {
+    if (isLoading) return;
+    
+    setIsLoading(true);
+    
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: `${window.location.origin}/`,
+        },
+      });
+
+      if (error) {
+        console.error(`${provider} login error:`, error);
+        toast.error(`Failed to sign in with ${provider}. Please try again.`);
+      }
+    } catch (error: any) {
+      console.error(`${provider} login error:`, error);
+      toast.error(`Failed to sign in with ${provider}. Please try again.`);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -213,6 +240,40 @@ const Auth = () => {
                   {isLoading ? "Signing in..." : "Sign In"}
                 </Button>
               </form>
+
+              <div className="relative my-6">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-background px-2 text-muted-foreground">
+                    Or continue with
+                  </span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => handleSocialLogin('google')}
+                  disabled={isLoading}
+                  className="w-full"
+                >
+                  <FcGoogle className="mr-2 h-5 w-5" />
+                  Google
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => handleSocialLogin('facebook')}
+                  disabled={isLoading}
+                  className="w-full"
+                >
+                  <FaFacebook className="mr-2 h-5 w-5 text-[#1877F2]" />
+                  Facebook
+                </Button>
+              </div>
             </TabsContent>
 
             <TabsContent value="signup">
@@ -253,6 +314,40 @@ const Auth = () => {
                   {isLoading ? "Creating account..." : "Sign Up"}
                 </Button>
               </form>
+
+              <div className="relative my-6">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-background px-2 text-muted-foreground">
+                    Or continue with
+                  </span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => handleSocialLogin('google')}
+                  disabled={isLoading}
+                  className="w-full"
+                >
+                  <FcGoogle className="mr-2 h-5 w-5" />
+                  Google
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => handleSocialLogin('facebook')}
+                  disabled={isLoading}
+                  className="w-full"
+                >
+                  <FaFacebook className="mr-2 h-5 w-5 text-[#1877F2]" />
+                  Facebook
+                </Button>
+              </div>
             </TabsContent>
           </Tabs>
         </CardContent>
